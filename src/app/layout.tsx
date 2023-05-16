@@ -1,46 +1,35 @@
-'use client';
-
-// import UserLoggedIn from '@/lib/loggedin'
 import './globals.css'
 import { Montserrat } from 'next/font/google'
-import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
-import { useState } from 'react';
+
+import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { headers, cookies } from "next/headers";
+import type { Database } from '@/interfaces/database';
+import SupabaseProvider from './supabase-provider';
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
-// export const metadata = {
-//   title: 'GITKIT',
-//   description: 'Link in bio',
-// }
+export const metadata = {
+  title: 'GITKIT',
+  description: 'Link in bio',
+}
 
 export default async function RootLayout(props:any) {
-  // const showLogin = UserLoggedIn()
-  // console.log(UserLoggedI)
+  const supabase = createServerComponentSupabaseClient<Database>({
+    headers,
+    cookies,
+  });
 
-  const [supabase] = useState(() => createBrowserSupabaseClient())
-  
-  const {data:user} = await supabase.auth.getUser()
+  const { data } = await supabase.auth.getSession();
 
-  console.log(user.user?.aud)
-
-  const logOut = () => {
-    supabase.auth.signOut();
-  }
-
-  const showLogin = true
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        
-        { user.user?.aud
-          ? (
-            <>
-              <button onClick={logOut}>Logout</button>
-              {props.feed}
-            </>
-            ) 
+        <SupabaseProvider>
+        { data.session
+          ? props.dash 
           : props.login
         }
+        </SupabaseProvider>
       </body>
     </html>
   )

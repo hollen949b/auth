@@ -11,7 +11,6 @@
   "dependencies": {
     "@headlessui/react": "^1.4.2",
     "@lexical/react": "^0.9.1",
-    "@next/font": "13.1.5",
     "@supabase/auth-helpers-nextjs": "^0.6.1",
     "@supabase/auth-helpers-react": "^0.3.1",
     "@supabase/auth-ui-react": "^0.4.2",
@@ -46,7 +45,7 @@
     "eslint-plugin-storybook": "^0.6.11",
     "postcss": "^8.4.21",
     "storybook": "^7.0.2",
-    "supabase": "^1.57.4",
+    "supabase": "^1.60.1",
     "tailwindcss": "^3.2.4"
   }
 }
