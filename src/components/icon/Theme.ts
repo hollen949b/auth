@@ -1,4 +1,4 @@
-import type { Theme } from '../interfaces/theme';
+import type { Theme } from '../../interfaces/theme';
 
 const themeDefault: Theme = {
   icon: {

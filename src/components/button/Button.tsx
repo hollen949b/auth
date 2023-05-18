@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { Icon, IconTheme } from '../icon';
+import { Icon, IconTheme, IconColors } from '../icon';
 import Styles  from './Button.module.css';
 import type { ThemeColors, ThemeSizes } from '@/interfaces/theme';
 
@@ -23,6 +23,7 @@ interface ButtonProps {
     type?:'button' | 'submit' | 'reset';
     iconLeft?:keyof IconTheme;
     iconRight?:keyof IconTheme;
+    iconColor?:keyof IconColors;
     full?:boolean;
     href?:string;
     onClick?:any;
@@ -33,6 +34,7 @@ export const Button = ({
     full,
     size = 'base',
     color = 'primary',
+    iconColor = 'primary',
     disabled = false,
     className,
     tabIndex, 
@@ -50,11 +52,11 @@ export const Button = ({
     const wFull = typeof full !== 'undefined' && 'w-full';
 
     const IconRight = () => {
-        return (typeof iconRight !== 'undefined') ? <Icon className={`${Styles['btn-icon']} ${Styles.icon}`} icon={iconRight} />:<></>
+        return (typeof iconRight !== 'undefined') ? <Icon className={`${Styles['btn-icon']} ${Styles.icon}`} icon={iconRight} color={iconColor} />:<></>
     };
 
     const IconLeft = () => {
-        return (typeof iconLeft !== 'undefined') ? <Icon className={`${Styles['btn-icon']} ${Styles.icon}`} icon={iconLeft} />:<></>
+        return (typeof iconLeft !== 'undefined') ? <Icon className={`${Styles['btn-icon']} ${Styles.icon}`} icon={iconLeft} color={iconColor}  />:<></>
     };
 
     return <Component

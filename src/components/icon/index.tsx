@@ -1,4 +1,7 @@
-import themeDefault from '@/utils/theme-default';
+import { ThemeColors } from '@/interfaces/theme';
+import themeDefault from '@/components/icon/Theme';
+
+export type IconColors   = Pick<ThemeColors, 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'clear' | 'lime'>;
 
 export interface IconTheme {
     x: {path:string};
@@ -28,6 +31,7 @@ export interface IconTheme {
 interface IconProps {
     className?:string;
     icon:keyof IconTheme;
+    color:keyof IconColors;
     children?:React.ReactNode,
 }
 
